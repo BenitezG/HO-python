@@ -1,0 +1,115 @@
+#Ejercicio I
+multiplos = []
+for i in range(0,1000):
+    if (i%3)==0:
+        multiplos.append(i)
+    elif (i%5) ==0:
+        multiplos.append(i)
+multiplos = set(multiplos)
+suma = 0
+for i in multiplos:
+    suma = suma + i
+print(suma)
+
+#Ejercico 2 
+a = 0
+b = 1
+fibronacci = []
+while b<1000000:
+    a,b = b , b+a
+    fibronacci.append(b)
+suma = 0
+for i in fibronacci:
+    if (i%2) != 0:
+        suma = suma + i
+print(suma)
+
+#Ejercicio III
+num = 600851475143
+denom = 2
+
+facprimos = []
+while num > 1:
+    while (num%denom) == 0:
+        num = num/denom
+        facprimos.append(denom)
+    denom += 1
+facprimos = list(set(facprimos))
+max(facprimos)
+
+#Ejercicio IV
+
+'''A partir de aquí tenga en cuenta que puede utilizar python con todas las librerías disponibles de scipy, numpy, matplotlib, visite las páginas de referencia e intente resolver los problemas como armaría un script para su trabajo diario. Tiene disponibles como referencia los ejemplos vistos en la parte teórica.
+
+4. Dado el siguiente set de datos, obtenga un gráfico tipo scatter plot para X en función de Y.
+5. Intente realizar un ajuste lineal o de algún polinomio utilizando este set de datos.
+
+6. Intente colocar label para los ejes y los datos
+'''
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame()
+df['x'] = [7.5,4.48,8.60,7.73,5.28,4.25,6.99,6.31,9.15,5.06]
+df['y'] = [28.66,20.37,22.33,26.35,22.29,21.74,23.11,23.13,24.68,21.89]
+
+plt.scatter(df['x'].tolist(), df['y'].tolist(), alpha=0.5)
+plt.ylabel('y')
+plt.xlabel('x')
+plt.title('Ejercicio 4-6')
+plt.show()
+
+'''7. Graficar el siguiente polinomio, su derivada y puntos extremos: f(x)=x³+x²-4x+4
+8. Colocar titulo a los ejes y agregarle una grilla en ambos. Definir el rango de la función entre -10 y 10.
+9. Colocar titulo y colores distintos para la función y la derivada.
+10. Guardar los resultados de evaluar la función en el rango del punto a cada 0.1 unidades en un archivo de texto.
+'''
+import numpy as np
+import matplotlib.pyplot as plt
+
+# generate N random points
+x = np.linspace(0, 10, 256, endpoint = True)
+y = x**3+x**2-4*x+4
+
+plt.plot(x, y, '-g', label=r'$y = x^3 + x^2-4x + 4$')
+
+axes = plt.gca()
+axes.set_xlim([x.min(), x.max()])
+axes.set_ylim([y.min(), y.max()])
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Polinomio')
+plt.legend(loc='upper left')
+
+plt.show()
+
+'''7. Graficar el siguiente polinomio, su derivada y puntos extremos: f(x)=x³+x²-4x+4
+8. Colocar titulo a los ejes y agregarle una grilla en ambos. Definir el rango de la función entre -10 y 10.
+9. Colocar titulo y colores distintos para la función y la derivada.
+10. Guardar los resultados de evaluar la función en el rango del punto a cada 0.1 unidades en un archivo de texto.
+'''
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+
+# generate N random points
+x = np.linspace(0, 10, 256, endpoint = True)
+y = x**3+x**2-4*x+4
+y_prima = 3*x +2*x-x
+
+plt.plot(x, y, '-g', label=r'$y = x^3 + x^2-4x + 4$')
+plt.plot(x, y_prima, '-r', label=r'$y = 3x + 2x- x$')
+
+axes = plt.gca()
+axes.set_xlim([x.min(), x.max()])
+axes.set_ylim([y.min(), y.max()])
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Polinomio')
+plt.legend(loc='upper left')
+
+plt.show()
